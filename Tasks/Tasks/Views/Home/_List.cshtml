@@ -1,0 +1,54 @@
+﻿@model PagedList.IPagedList<Tasks.Models.ProductViewModel>
+@using PagedList.Mvc;
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Barcode</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Barcode)
+                </td>
+                <td class="col-md-2">
+                    <a class="btnEdit btn btn-xs btn-primary" href="@Url.Action("Edit", new { id = item.ID })">
+                        <i class="fa fa-edit">Edit</i>
+                    </a>
+                    <a class="btnDelete btn btn-xs btn-danger" href="@Url.Action("Delete", new { id = item.ID })">
+                        <i class="fa fa-">Delete</i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+        @Html.PagedListPager(
+            Model,
+            page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter, pageSize = ViewBag.PageSize }),
+            PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 },
+                                                                  new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "divList", OnComplete = "PagedOnComplete" }))
+  
+
+
+
+
+

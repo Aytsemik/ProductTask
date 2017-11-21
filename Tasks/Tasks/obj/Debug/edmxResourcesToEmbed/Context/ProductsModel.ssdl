@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProductsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Barcode" Type="nvarchar" MaxLength="16" />
+  </EntityType>
+  <EntityContainer Name="ProductsModelStoreContainer">
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Insert";
+
+}
+
+@if (ViewBag.Message != null)
+{
+    var message = (Tasks.Models.CustomMessage)ViewBag.Message;
+    <div class="row pt-20">
+        <div class="alert @message.Color" role="alert">
+            @message.Text
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        @using (Html.BeginForm("InsertSubmit", "Home", FormMethod.Post,new { id="insertForm"}))
+        {
+            <dl>
+                <dt>Code</dt>
+                <dd>Random number within range 1-99999</dd>
+                <dt>Name</dt>
+                <dd>Random string with 5-15</dd>
+
+                <dt>Price</dt>
+                <dd>Random number within range 10-50000</dd>
+
+                <dt>Barcode</dt>
+                <dd>Random string 13 char length</dd>
+                <dt></dt>
+                <dd><button type="submit" class="btn btn-primary col-md-offset-10" id="btnSubmit"> Add / Update Products</button></dd>
+            </dl>
+
+        }
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+      
+        $(document).on('submit', '#insertForm', function () {
+            
+            $("#btnSubmit").attr("disabled", "disabled");
+        });
+    </script>
+}
